@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  # Flutter development container
+  flutter-dev:
+    build: .
+    container_name: waldo_coffee_dev
+    volumes:
+      - .:/app
+      - flutter-pub-cache:/root/.pub-cache
+    ports:
+      - "8080:8080"  # Web için
+      - "42000:42000"  # DevTools için
+    environment:
+      - FLUTTER_WEB_PORT=8080
+    stdin_open: true
+    tty: true
+    command: >
+      bash -c "
+        flutter pub get &&
+        flutter run -d web-server --web-port=8080 --web-hostname=0.0.0.0
+      "
+
+volumes:
+  flutter-pub-cache:
+
