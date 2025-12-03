@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/providers/auth_provider.dart';
@@ -24,6 +25,34 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  Widget _buildTextLogo() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'WALDO',
+          style: TextStyle(
+            fontSize: 32,
+            fontWeight: FontWeight.w900,
+            color: Colors.black,
+            letterSpacing: 2,
+            height: 0.9,
+          ),
+        ),
+        Text(
+          'coffee co.',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: AppTheme.primaryColor,
+            fontStyle: FontStyle.italic,
+            letterSpacing: 1,
+          ),
+        ),
+      ],
+    );
   }
 
   Future<void> _handleLogin() async {
@@ -106,28 +135,39 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 children: [
                   // Logo
                   Container(
-                    padding: const EdgeInsets.all(24),
+                    width: 180,
+                    height: 180,
+                    padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: AppTheme.surfaceColor.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(24),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(28),
                       border: Border.all(
-                        color: AppTheme.primaryColor.withOpacity(0.3),
-                        width: 2,
+                        color: AppTheme.primaryColor.withOpacity(0.5),
+                        width: 3,
                       ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppTheme.primaryColor.withOpacity(0.3),
+                          blurRadius: 30,
+                          spreadRadius: 5,
+                        ),
+                      ],
                     ),
-                    child: Image.asset(
-                      'assets/waldo_logo_original.png',
-                      width: 120,
-                      height: 120,
-                      fit: BoxFit.contain,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Icon(
-                          Icons.coffee,
-                          size: 80,
-                          color: AppTheme.primaryColor,
-                        );
-                      },
-                    ),
+                    child: kIsWeb
+                        ? Image.network(
+                            'waldo_logo.png',
+                            fit: BoxFit.contain,
+                            errorBuilder: (context, error, stackTrace) {
+                              return _buildTextLogo();
+                            },
+                          )
+                        : Image.asset(
+                            'assets/waldo_logo_original.png',
+                            fit: BoxFit.contain,
+                            errorBuilder: (context, error, stackTrace) {
+                              return _buildTextLogo();
+                            },
+                          ),
                   ),
                   const SizedBox(height: 32),
                   const Text(
