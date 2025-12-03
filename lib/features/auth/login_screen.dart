@@ -85,14 +85,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppTheme.backgroundColor,
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
             colors: [
-              AppTheme.primaryColor.withOpacity(0.8),
-              AppTheme.primaryColor,
+              AppTheme.backgroundColor,
+              AppTheme.darkColor,
             ],
           ),
         ),
@@ -103,26 +104,39 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Logo / Title
+                  // Logo
                   Container(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
-                      shape: BoxShape.circle,
+                      color: AppTheme.surfaceColor.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(24),
+                      border: Border.all(
+                        color: AppTheme.primaryColor.withOpacity(0.3),
+                        width: 2,
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.coffee,
-                      size: 80,
-                      color: Colors.white,
+                    child: Image.asset(
+                      'assets/waldo_logo_original.png',
+                      width: 120,
+                      height: 120,
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(
+                          Icons.coffee,
+                          size: 80,
+                          color: AppTheme.primaryColor,
+                        );
+                      },
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 32),
                   const Text(
                     'Waldo Coffee',
                     style: TextStyle(
-                      fontSize: 32,
+                      fontSize: 36,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
+                      letterSpacing: 1.2,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -130,22 +144,28 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     'Görev Yönetim Sistemi',
                     style: TextStyle(
                       fontSize: 16,
-                      color: Colors.white.withOpacity(0.8),
+                      color: AppTheme.textSecondary,
+                      letterSpacing: 0.5,
                     ),
                   ),
                   const SizedBox(height: 48),
 
                   // Login form
                   Container(
-                    padding: const EdgeInsets.all(24),
+                    padding: const EdgeInsets.all(28),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: AppTheme.cardColor,
                       borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: AppTheme.primaryColor.withOpacity(0.2),
+                        width: 1,
+                      ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          blurRadius: 20,
-                          offset: const Offset(0, 10),
+                          color: Colors.black.withOpacity(0.3),
+                          blurRadius: 30,
+                          offset: const Offset(0, 15),
+                          spreadRadius: 5,
                         ),
                       ],
                     ),
@@ -159,7 +179,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
-                              color: AppTheme.textPrimary,
+                              color: Colors.white,
                             ),
                             textAlign: TextAlign.center,
                           ),
