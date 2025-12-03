@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  // Waldo Coffee renkleri - Kahve teması
-  static const Color primaryColor = Color(0xFF6F4E37); // Kahve kahverengi
-  static const Color secondaryColor = Color(0xFFD4A574); // Sütlü kahve
-  static const Color accentColor = Color(0xFFC9A66B); // Karamel
-  static const Color backgroundColor = Color(0xFFFAF7F2); // Krem beyaz
-  static const Color surfaceColor = Color(0xFFFFFFFF);
+  // Simpra renk teması - Modern turuncu/kırmızı
+  static const Color primaryColor = Color(0xFFFF6B00); // Simpra turuncu
+  static const Color primaryDark = Color(0xFFE64626); // Koyu turuncu/kırmızı
+  static const Color secondaryColor = Color(0xFFFF8534); // Açık turuncu
+  static const Color accentColor = Color(0xFFFFB366); // Soft turuncu
+  static const Color backgroundColor = Color(0xFFF5F5F5); // Açık gri
+  static const Color surfaceColor = Color(0xFFFFFFFF); // Beyaz
+  static const Color darkColor = Color(0xFF1A1A1A); // Koyu siyah
   static const Color errorColor = Color(0xFFE53935);
   static const Color successColor = Color(0xFF43A047);
   static const Color warningColor = Color(0xFFFF9800);
   static const Color urgentColor = Color(0xFFE53935);
 
-  // Text colors
-  static const Color textPrimary = Color(0xFF3E2723);
-  static const Color textSecondary = Color(0xFF6D4C41);
-  static const Color textLight = Color(0xFF8D6E63);
+  // Text colors - Modern koyu tonlar
+  static const Color textPrimary = Color(0xFF1A1A1A); // Neredeyse siyah
+  static const Color textSecondary = Color(0xFF666666); // Orta gri
+  static const Color textLight = Color(0xFF999999); // Açık gri
 
   static ThemeData get lightTheme {
     return ThemeData(
